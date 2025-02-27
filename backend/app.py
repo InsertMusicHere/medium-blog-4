@@ -7,7 +7,7 @@ import os
 '''
 Using FastAPI to Host Our APIs  
 VirusTotal allows users to upload files to their cloud using [https://www.virustotal.com/api/v3/files](https://www.virustotal.com/api/v3/files)  
-and fetch the results using [https://www.virustotal.com/api/v3/analyses/{file_id}](https://www.virustotal.com/api/v3/analyses/{file_id}),  
+and fetch the results using [https://www.virustotal.com/api/v3/analyses/{file_id}],  
 where `file_id` is generated when a file is uploaded to the `/api/v3/files` endpoint.  
 
 Let's create two endpoints in FastAPI:  
@@ -20,9 +20,9 @@ app = FastAPI()
 
 VIRUSTOTAL_API_KEY = "" # add your virus total api key here
 
-# For quicker results, only scan the document using a select few antiviruses,  
-# since VirusTotal has over 70 scanners.  
-# However, it is recommended to use all scanners in production rather than just a select few.  
+# We'll define a SAFE_ENGINES array, which includes a subset of antivirus engines available on VirusTotal. 
+# Currently, VirusTotal integrates 70+ antivirus scanners, each capable of detecting potential Trojans, malware, and viruses.
+# However, for the sake of this blog and to simplify the demonstration of scanning results, I am using a hardcoded SAFE_ENGINES array instead of querying all available engines. 
 
 SAFE_ENGINES = ["Microsoft", "Bitdefender", "Kaspersky", "McAfee", "Sophos"]
 
